@@ -1,0 +1,34 @@
+﻿@model GabinetKosmetyczny.produkty_do_zabiegu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>produkty_do_zabiegu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.produkty.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produkty.nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ_zabiegu.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ_zabiegu.nazwa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_produkty_do_zabiegu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

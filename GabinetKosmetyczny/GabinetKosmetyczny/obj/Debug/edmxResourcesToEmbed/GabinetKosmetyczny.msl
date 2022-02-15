@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Gabinet_Kosmetyczny_DBModelStoreContainer" CdmEntityContainer="Gabinet_Kosmetyczny_DBEntities">
+    <EntitySetMapping Name="gabinety">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.gabinety">
+        <MappingFragment StoreEntitySet="gabinety">
+          <ScalarProperty Name="id_gabinetu" ColumnName="id_gabinetu" />
+          <ScalarProperty Name="wielkosc_m2" ColumnName="wielkosc_m2" />
+          <ScalarProperty Name="pomieszczenia" ColumnName="pomieszczenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klienci">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.klienci">
+        <MappingFragment StoreEntitySet="klienci">
+          <ScalarProperty Name="id_klienta" ColumnName="id_klienta" />
+          <ScalarProperty Name="imie" ColumnName="imie" />
+          <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="plec" ColumnName="plec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pracownicy">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.pracownicy">
+        <MappingFragment StoreEntitySet="pracownicy">
+          <ScalarProperty Name="id_pracownika" ColumnName="id_pracownika" />
+          <ScalarProperty Name="imie" ColumnName="imie" />
+          <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="pesel" ColumnName="pesel" />
+          <ScalarProperty Name="data_zatrudnienia" ColumnName="data_zatrudnienia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produkty">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.produkty">
+        <MappingFragment StoreEntitySet="produkty">
+          <ScalarProperty Name="id_produktu" ColumnName="id_produktu" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="producent" ColumnName="producent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produkty_do_zabiegu">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.produkty_do_zabiegu">
+        <MappingFragment StoreEntitySet="produkty_do_zabiegu">
+          <ScalarProperty Name="id_produkty_do_zabiegu" ColumnName="id_produkty_do_zabiegu" />
+          <ScalarProperty Name="produkt" ColumnName="produkt" />
+          <ScalarProperty Name="nazwazabiegu" ColumnName="nazwazabiegu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="typ_zabiegu">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.typ_zabiegu">
+        <MappingFragment StoreEntitySet="typ_zabiegu">
+          <ScalarProperty Name="id_zabiegu" ColumnName="id_zabiegu" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="typ" ColumnName="typ" />
+          <ScalarProperty Name="czastrwania" ColumnName="czastrwania" />
+          <ScalarProperty Name="cena" ColumnName="cena" />
+          <ScalarProperty Name="pracownik" ColumnName="pracownik" />
+          <ScalarProperty Name="gabinety" ColumnName="gabinety" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zabiegi">
+      <EntityTypeMapping TypeName="Gabinet_Kosmetyczny_DBModel.zabiegi">
+        <MappingFragment StoreEntitySet="zabiegi">
+          <ScalarProperty Name="id_zabiegu" ColumnName="id_zabiegu" />
+          <ScalarProperty Name="klient" ColumnName="klient" />
+          <ScalarProperty Name="zabieg" ColumnName="zabieg" />
+          <ScalarProperty Name="termin" ColumnName="termin" />
+          <ScalarProperty Name="wykonano" ColumnName="wykonano" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

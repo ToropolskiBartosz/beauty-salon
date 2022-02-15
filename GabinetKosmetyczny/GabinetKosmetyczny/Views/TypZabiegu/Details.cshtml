@@ -1,0 +1,66 @@
+﻿@model GabinetKosmetyczny.typ_zabiegu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>typ_zabiegu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.typ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.czastrwania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.czastrwania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gabinety1.id_gabinetu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gabinety1.id_gabinetu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pracownicy.imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pracownicy.imie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_zabiegu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

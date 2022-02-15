@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GabinetKosmetyczny.zabiegi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Zabiegi</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.termin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wykonano)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.klienci.imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typ_zabiegu.nazwa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.termin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wykonano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.klienci.imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typ_zabiegu.nazwa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_zabiegu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_zabiegu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_zabiegu })
+        </td>
+    </tr>
+}
+
+</table>

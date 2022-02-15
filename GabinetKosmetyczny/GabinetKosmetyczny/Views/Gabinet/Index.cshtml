@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GabinetKosmetyczny.gabinety>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gabinety</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_gabinetu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wielkosc_m2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pomieszczenia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id_gabinetu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.wielkosc_m2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pomieszczenia)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id_gabinetu }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id_gabinetu }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id_gabinetu })
+    </td>
+</tr>
+}
+
+</table>

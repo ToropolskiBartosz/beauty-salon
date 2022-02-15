@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Gabinet_Kosmetyczny_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="gabinety">
+    <Key>
+      <PropertyRef Name="id_gabinetu" />
+    </Key>
+    <Property Name="id_gabinetu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="wielkosc_m2" Type="Int16" />
+    <Property Name="pomieszczenia" Type="Int16" />
+    <NavigationProperty Name="typ_zabiegu" Relationship="Self.typ_zabiegu_gabinety_fkey" FromRole="gabinety" ToRole="typ_zabiegu" />
+  </EntityType>
+  <EntityType Name="klienci">
+    <Key>
+      <PropertyRef Name="id_klienta" />
+    </Key>
+    <Property Name="id_klienta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nazwisko" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="plec" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="zabiegi" Relationship="Self.zabiegi_klient_fkey" FromRole="klienci" ToRole="zabiegi" />
+  </EntityType>
+  <EntityType Name="pracownicy">
+    <Key>
+      <PropertyRef Name="id_pracownika" />
+    </Key>
+    <Property Name="id_pracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imie" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nazwisko" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data_zatrudnienia" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="typ_zabiegu" Relationship="Self.typ_zabiegu_pracownik_fkey" FromRole="pracownicy" ToRole="typ_zabiegu" />
+  </EntityType>
+  <EntityType Name="produkty">
+    <Key>
+      <PropertyRef Name="id_produktu" />
+    </Key>
+    <Property Name="id_produktu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nazwa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cena" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="producent" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="produkty_do_zabiegu" Relationship="Self.produkty_do_zabiegu_produkt_fkey" FromRole="produkty" ToRole="produkty_do_zabiegu" />
+  </EntityType>
+  <EntityType Name="produkty_do_zabiegu">
+    <Key>
+      <PropertyRef Name="id_produkty_do_zabiegu" />
+    </Key>
+    <Property Name="id_produkty_do_zabiegu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="produkt" Type="Int32" />
+    <Property Name="nazwazabiegu" Type="Int32" />
+    <NavigationProperty Name="produkty" Relationship="Self.produkty_do_zabiegu_produkt_fkey" FromRole="produkty_do_zabiegu" ToRole="produkty" />
+    <NavigationProperty Name="typ_zabiegu" Relationship="Self.produkty_do_zabiegu_nazwazabiegu_fkey" FromRole="produkty_do_zabiegu" ToRole="typ_zabiegu" />
+  </EntityType>
+  <EntityType Name="typ_zabiegu">
+    <Key>
+      <PropertyRef Name="id_zabiegu" />
+    </Key>
+    <Property Name="id_zabiegu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nazwa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="typ" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="czastrwania" Type="Int16" Nullable="false" />
+    <Property Name="cena" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="pracownik" Type="Int32" />
+    <Property Name="gabinety" Type="Int32" />
+    <NavigationProperty Name="gabinety1" Relationship="Self.typ_zabiegu_gabinety_fkey" FromRole="typ_zabiegu" ToRole="gabinety" />
+    <NavigationProperty Name="pracownicy" Relationship="Self.typ_zabiegu_pracownik_fkey" FromRole="typ_zabiegu" ToRole="pracownicy" />
+    <NavigationProperty Name="produkty_do_zabiegu" Relationship="Self.produkty_do_zabiegu_nazwazabiegu_fkey" FromRole="typ_zabiegu" ToRole="produkty_do_zabiegu" />
+    <NavigationProperty Name="zabiegi" Relationship="Self.zabiegi_zabieg_fkey" FromRole="typ_zabiegu" ToRole="zabiegi" />
+  </EntityType>
+  <EntityType Name="zabiegi">
+    <Key>
+      <PropertyRef Name="id_zabiegu" />
+    </Key>
+    <Property Name="id_zabiegu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="klient" Type="Int32" />
+    <Property Name="zabieg" Type="Int32" />
+    <Property Name="termin" Type="DateTime" Precision="6" />
+    <Property Name="wykonano" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="klienci" Relationship="Self.zabiegi_klient_fkey" FromRole="zabiegi" ToRole="klienci" />
+    <NavigationProperty Name="typ_zabiegu" Relationship="Self.zabiegi_zabieg_fkey" FromRole="zabiegi" ToRole="typ_zabiegu" />
+  </EntityType>
+  <Association Name="typ_zabiegu_gabinety_fkey">
+    <End Role="gabinety" Type="Self.gabinety" Multiplicity="0..1" />
+    <End Role="typ_zabiegu" Type="Self.typ_zabiegu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gabinety">
+        <PropertyRef Name="id_gabinetu" />
+      </Principal>
+      <Dependent Role="typ_zabiegu">
+        <PropertyRef Name="gabinety" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zabiegi_klient_fkey">
+    <End Role="klienci" Type="Self.klienci" Multiplicity="0..1" />
+    <End Role="zabiegi" Type="Self.zabiegi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klienci">
+        <PropertyRef Name="id_klienta" />
+      </Principal>
+      <Dependent Role="zabiegi">
+        <PropertyRef Name="klient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="typ_zabiegu_pracownik_fkey">
+    <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="0..1" />
+    <End Role="typ_zabiegu" Type="Self.typ_zabiegu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pracownicy">
+        <PropertyRef Name="id_pracownika" />
+      </Principal>
+      <Dependent Role="typ_zabiegu">
+        <PropertyRef Name="pracownik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="produkty_do_zabiegu_produkt_fkey">
+    <End Role="produkty" Type="Self.produkty" Multiplicity="0..1" />
+    <End Role="produkty_do_zabiegu" Type="Self.produkty_do_zabiegu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produkty">
+        <PropertyRef Name="id_produktu" />
+      </Principal>
+      <Dependent Role="produkty_do_zabiegu">
+        <PropertyRef Name="produkt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="produkty_do_zabiegu_nazwazabiegu_fkey">
+    <End Role="typ_zabiegu" Type="Self.typ_zabiegu" Multiplicity="0..1" />
+    <End Role="produkty_do_zabiegu" Type="Self.produkty_do_zabiegu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="typ_zabiegu">
+        <PropertyRef Name="id_zabiegu" />
+      </Principal>
+      <Dependent Role="produkty_do_zabiegu">
+        <PropertyRef Name="nazwazabiegu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zabiegi_zabieg_fkey">
+    <End Role="typ_zabiegu" Type="Self.typ_zabiegu" Multiplicity="0..1" />
+    <End Role="zabiegi" Type="Self.zabiegi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="typ_zabiegu">
+        <PropertyRef Name="id_zabiegu" />
+      </Principal>
+      <Dependent Role="zabiegi">
+        <PropertyRef Name="zabieg" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Gabinet_Kosmetyczny_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="gabinety" EntityType="Self.gabinety" />
+    <EntitySet Name="klienci" EntityType="Self.klienci" />
+    <EntitySet Name="pracownicy" EntityType="Self.pracownicy" />
+    <EntitySet Name="produkty" EntityType="Self.produkty" />
+    <EntitySet Name="produkty_do_zabiegu" EntityType="Self.produkty_do_zabiegu" />
+    <EntitySet Name="typ_zabiegu" EntityType="Self.typ_zabiegu" />
+    <EntitySet Name="zabiegi" EntityType="Self.zabiegi" />
+    <AssociationSet Name="typ_zabiegu_gabinety_fkey" Association="Self.typ_zabiegu_gabinety_fkey">
+      <End Role="gabinety" EntitySet="gabinety" />
+      <End Role="typ_zabiegu" EntitySet="typ_zabiegu" />
+    </AssociationSet>
+    <AssociationSet Name="zabiegi_klient_fkey" Association="Self.zabiegi_klient_fkey">
+      <End Role="klienci" EntitySet="klienci" />
+      <End Role="zabiegi" EntitySet="zabiegi" />
+    </AssociationSet>
+    <AssociationSet Name="typ_zabiegu_pracownik_fkey" Association="Self.typ_zabiegu_pracownik_fkey">
+      <End Role="pracownicy" EntitySet="pracownicy" />
+      <End Role="typ_zabiegu" EntitySet="typ_zabiegu" />
+    </AssociationSet>
+    <AssociationSet Name="produkty_do_zabiegu_produkt_fkey" Association="Self.produkty_do_zabiegu_produkt_fkey">
+      <End Role="produkty" EntitySet="produkty" />
+      <End Role="produkty_do_zabiegu" EntitySet="produkty_do_zabiegu" />
+    </AssociationSet>
+    <AssociationSet Name="produkty_do_zabiegu_nazwazabiegu_fkey" Association="Self.produkty_do_zabiegu_nazwazabiegu_fkey">
+      <End Role="typ_zabiegu" EntitySet="typ_zabiegu" />
+      <End Role="produkty_do_zabiegu" EntitySet="produkty_do_zabiegu" />
+    </AssociationSet>
+    <AssociationSet Name="zabiegi_zabieg_fkey" Association="Self.zabiegi_zabieg_fkey">
+      <End Role="typ_zabiegu" EntitySet="typ_zabiegu" />
+      <End Role="zabiegi" EntitySet="zabiegi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
